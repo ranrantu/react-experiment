@@ -1,3 +1,5 @@
+import excel from 'js-export-excel';
+
 class ComponentA {
 
 }
@@ -17,8 +19,6 @@ class Demo {
         return null;
     }
 }
-
-
 
 const contain = document.getElementById('container');
 
