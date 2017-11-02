@@ -1,10 +1,5 @@
-import excel from 'js-export-excel';
 
-class ComponentA {
-
-}
-
-class Demo {
+class Demo{
     constructor(){
         // super();
         this.name = 'demo';
@@ -12,7 +7,7 @@ class Demo {
 
     getName = () => {
         console.log(this.showContent());
-        return this.name;
+        return Context;
     }
 
     showContent = () => {
@@ -20,6 +15,10 @@ class Demo {
     }
 }
 
-const contain = document.getElementById('container');
+const contain = document.createElement('div');
 
 contain.innerHTML = new Demo().getName();
+
+document.body.appendChild(contain);
+
+export default a = 2;

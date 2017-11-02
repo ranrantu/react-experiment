@@ -1,39 +1,53 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
-const DEVELOPMENT = process.env.NODE_ENV === 'development';
-const PRODUCTION = process.env.NODE_ENV === 'production';
-
-const entry = PRODUCTION
-    ?   ['./src/js/index.js']
-    :   [
-        './src/js/index.js',
-        'webpack/hot/dev-server',
-        'webpack-dev-server/client?http://localhost:8080'
-    ];
-
-const plugins = DEVELOPMENT
-    ?   []
-    :   [ new webpack.HotModuleReplacementPlugin() ];
-
 module.exports = {
-    entry:entry,
-    plugins:plugins,
-    output:{
-        path:path.resolve(__dirname,'./dist/js'),
-        publicPath: "/dist/",
-        filename:'bundle.js',
+    entry:{
+        'app':'./src/js/app.jsx',
+        'vendor':['react','react-dom']
     },
-    // module:{
-    //     rules:[
-    //         {
-    //             test:/\.jsx?$/,
-    //             loader:'babel-loader',
-    //             options:{
-    //                 presets:['es2015','stage-0']
-    //             }
-    //         }
-    //     ],
-    // },
+    output:{
+        path:path.resolve(__dirname,'./dist/'),
+        filename:'[name].[chunkHash].js',
+    },
+    resolve: {
+        extensions: ['.js', '.jsx']
+    },
+    module:{
+        rules:[
+            {
+                test:/\.jsx?$/,
+                loader:'babel-loader',
+                exclude:/node_modules/,
+                options:{
+                    presets:[
+                        ['env',{modules:false}],
+                        'react'
+                    ],
+                    plugins:[
+                        'babel-plugin-transform-class-properties'
+                    ]
+                }
+            }
+        ],
+    },
+    plugins: [
+        new CleanWebpackPlugin(['dist']),
+        new HtmlWebpackPlugin({
+            filename:'index.html',
+            template:'./src/index.html'
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: ['vendor','manifest'],
+            minChunks: Infinity,
+        }),
+        new webpack.HashedModuleIdsPlugin()
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        port: 8001
+    }
 }
