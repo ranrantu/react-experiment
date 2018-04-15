@@ -1,0 +1,158 @@
+@import "~themes/vars";
+
+.Overview{
+    .width {
+        width: 70px;
+        display: inline-block;
+    }
+    .divWidth {
+        width: 260px;
+    }
+    .inputWidth {
+        width: 145px;
+    }
+    .search{
+        padding-bottom: 16px;
+        border-bottom: 0.5px solid #E6E6E6;
+        display: flex;
+        align-items: center;
+    }
+    .content {
+        display: flex;
+        height: 100%;
+        .flowsheet {
+            //padding: 20px;
+            flex: 1;
+            //height: e("calc(100vh - 210px)");
+        }
+        .iconlist {
+            width: 35%;
+            padding-left: 21px;
+            border-left: 1px solid #E9E9E9;
+            padding: 20px;
+            :global .ant-card-head {
+                padding: 0;
+            }
+            .title{
+                font-family: SourceHanSansCN-Medium;
+                font-size: 16px;
+                color: #292929;
+                background: #FAFAFA;
+                border-radius: 8px 8px 0 0;
+                padding-left: 10px;
+            }
+            .cardContainer {
+                text-align: center;
+                font-family: SourceHanSansCN-Medium;
+                .number {
+                    font-size: 30px;
+                    color: #302D34;
+                    line-height: 30px;
+                }
+                .des{
+                    font-size: 12px;
+                    color: #9D9DA1;
+                }
+                .compare {
+                    display: flex;
+                    padding: 20px 0;
+                }
+                .left {
+                    width: 50%;
+                    border-right: 0.5px solid #E6E6E6;
+                }
+                .right {
+                    flex: 1;
+                }
+                .font {
+                    font-size: 12px;
+                    color: #9D9DA1;
+                }
+                .iconRed {
+                    font-family: Roboto-Bold;
+                    font-size: 14px;
+                    color: #FF6060;
+                    line-height: 14px;
+                    font-weight: bolder;
+                }
+                .iconGreen {
+                    font-family: Roboto-Bold;
+                    font-size: 14px;
+                    color: #56E160;
+                    line-height: 14px;
+                    font-weight: bolder;
+                }
+            }
+        }
+    }
+}
+
+.flowsheet {
+    position: relative;
+    padding:0px;
+    overflow: auto;
+    .path {
+        stroke:linear-gradient(45deg, blue, red);
+    }
+    .box {
+        width:120px;
+        height:100px;
+        position: absolute;
+        top:20px;
+        left:200px;
+        border-radius: 10px;
+
+        background:#fff;
+        box-shadow: 0px 6px 14px 0 rgba(211, 197, 171, 0.3);
+        .header {
+            width:100%;
+            height:30px;
+            background: #FAFAFA;
+            box-shadow: 0 0 0 0 #E5E5E5;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            line-height: 34px;
+            font-size: 14px;
+            color: #4a4a4a;
+            box-shadow: 0px 1px 0 0 #E5E5E5;
+        }
+        .title {
+            font-family: SourceHanSansCN-Regular;;
+            font-size: 18px;
+            color: #302D34;
+            line-height: 18px;
+            margin-top: 15px;
+            text-align: center;
+            width:100%;
+        }
+        .inner {
+            line-height: 28px;
+            text-align: center;
+            font-size: 12px;
+            color: #9E9E9E;
+            letter-spacing: 0;
+        }
+    }
+    .maskBox {
+        width:120px;
+        height:100px;
+        position: absolute;
+        top:20px;
+        left:200px;
+        cursor:pointer;
+        background: transparent;
+    }
+    .box.active {
+        border:2px solid #FFE600;
+        width:124px;
+        height:104px;
+        margin-left:-2px;
+        margin-top:-2px;
+    }
+    .maskBox.active {
+        //border:2px solid #FFE600;
+        //background:#fff;
+        //box-shadow: 0px 6px 14px 0 rgba(211, 197, 171, 0.3);
+        //border-radius: 10px;
+    }
+}
